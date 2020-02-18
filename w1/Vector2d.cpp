@@ -2,6 +2,7 @@
 #include "Vector2d.h"
 #include "Math.h";
 #include "iostream";
+
 #define PI 3.14159265  
 
 Vector2d::Vector2d(){ //0
@@ -38,22 +39,81 @@ double Vector2d::gety() {
 void Vector2d::printCoor() {
 	std::cout <<"("<< x << "; " << y <<")"<< std::endl;
 }
+Vector2d::operator std::string() const {
+	return "(" + std::to_string(this->x) + "; " + std::to_string(this->y) + ")";
+}
 
-Vector2d Vector2d::sum(Vector2d v) {
+Vector2d Vector2d::operator+(const Vector2d & v) const{
 	return Vector2d(this->x + v.x, this->y + v.y);
 }
 
-Vector2d Vector2d::sub(Vector2d v) {
+Vector2d Vector2d::operator-(const Vector2d & v) const {
 	return Vector2d(this->x - v.x, this->y - v.y);
 }
 
-Vector2d Vector2d::mult(double n) {
+Vector2d Vector2d::operator*(double n) const{
 	return Vector2d(this->x * n, this->y * n);
 }
+Vector2d operator*(double n, Vector2d& v) {
+	return v * n;
+}
 
-double Vector2d::scalarMult(Vector2d v) {
+double Vector2d::operator*(const Vector2d& v) const {
 	return this->x*v.x + this->y*v.y;
 }
+
+Vector2d& Vector2d::operator++() {
+	this->x++;
+	this->y++;
+	return *this;
+}
+
+Vector2d Vector2d::operator++(int) {
+	Vector2d temp(this->x, this->y);
+	this->x++;
+	this->y++;
+	return temp;
+}
+Vector2d& Vector2d::operator--() {
+	this->x--;
+	this->y--;
+	return *this;
+}
+Vector2d Vector2d::operator--(int) {
+	Vector2d temp(this->x, this->y);
+	this->x--;
+	this->y--;
+	return temp;
+}
+
+const Vector2d& Vector2d::operator+=(const Vector2d& v) {
+	this->x += v.x;
+	this->y += v.y;
+	return *this;
+}
+const Vector2d& Vector2d::operator+=(double n) {
+	this->x += n;
+	this->y += n;
+	return *this;
+}
+
+const Vector2d& Vector2d::operator-=(const Vector2d& v) {
+	this->x -= v.x;
+	this->y -= v.y;
+	return *this;
+}
+const Vector2d& Vector2d::operator-=(double n) {
+	this->x -= n;
+	this->y -= n;
+	return *this;
+}
+
+const Vector2d& Vector2d::operator*=(double n) {
+	this->x *= n;
+	this->y *= n;
+	return *this;
+};
+
 double Vector2d::len(){
 	return sqrt(this->x * this->x + this->y * this->y);
 }
