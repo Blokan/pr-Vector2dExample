@@ -15,14 +15,13 @@ public:
 	void sety(double);
 	double gety();
 
-	void print(void);
 	void printCoor(void);
 
-	void sum(Vector2d);
-	void sub(Vector2d);
-	void mult(double);
+	Vector2d sum(Vector2d);
+	Vector2d sub(Vector2d);
+	Vector2d mult(double);
 	double scalarMult(Vector2d);
-	double len(Vector2d);
+	double len();
 	double angle(Vector2d&);
 
 	//Vector2d();

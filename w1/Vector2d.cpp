@@ -38,28 +38,25 @@ double Vector2d::gety() {
 void Vector2d::printCoor() {
 	std::cout <<"("<< x << "; " << y <<")"<< std::endl;
 }
-void Vector2d::print() {
-	std::cout << x << " " << y << std::endl;
+
+Vector2d Vector2d::sum(Vector2d v) {
+	return Vector2d(this->x + v.x, this->y + v.y);
 }
 
-void Vector2d::sum(Vector2d v){
-	x = x + v.x;
-	y = y + v.y;
+Vector2d Vector2d::sub(Vector2d v) {
+	return Vector2d(this->x - v.x, this->y - v.y);
 }
-void Vector2d::sub(Vector2d v) {
-	x = x - v.x;
-	y = y - v.y;
+
+Vector2d Vector2d::mult(double n) {
+	return Vector2d(this->x * n, this->y * n);
 }
-void Vector2d::mult(double n) {
-	x = x * n;
-	y = y * n;
-}
+
 double Vector2d::scalarMult(Vector2d v) {
 	return this->x*v.x + this->y*v.y;
 }
-double Vector2d::len(Vector2d){
+double Vector2d::len(){
 	return sqrt(this->x * this->x + this->y * this->y);
 }
 double Vector2d::angle(Vector2d& v){
-	return acos((this->x * v.x +this->y *v.y )/ (sqrt(this->x * this->x + this->y * this->y) * sqrt(v.x * v.x + v.y * v.y)))*180/PI;
+	return acos((this->x * v.x + this->y *v.y) / (this->len()*v.len()))*180/PI;
 }
